@@ -1,5 +1,14 @@
 from random import randint
 
+#
+# En este módulo se encuentran las implementaciones de los algoritmos de sorting
+# utilizados.
+#
+
+
+##################################################################################
+#                                Insertion sort 
+##################################################################################
 def insertionSort(array):
 	i = 1
 	while i < len(array):
@@ -11,7 +20,18 @@ def insertionSort(array):
 	return array
 
 
-# Requiere 0 <= i <= j < |array|
+##################################################################################
+#                                Selection sort 
+##################################################################################
+def selectionSort(array):
+	i = 0
+	while i < len(array)-1:
+		minimo = minPos(i, len(array)-1, array)
+		array[minimo], array[i] = array[i], array[minimo]
+		i += 1
+	return array
+
+# Requiere: 0 <= i <= j < |array|
 def minPos(i, j, array):
 	res = i
 	count = i
@@ -21,15 +41,10 @@ def minPos(i, j, array):
 		count += 1
 	return res
 
-def selectionSort(array):
-	i = 0
-	while i < len(array)-1:
-		minimo = minPos(i, len(array)-1, array)
-		array[minimo], array[i] = array[i], array[minimo]
-		i += 1
-	return array
 
-
+##################################################################################
+#                                Bubble sort 
+##################################################################################
 def bubbleSort(array):
 	intercambiado = True
 	n = len(array)-1
@@ -43,6 +58,19 @@ def bubbleSort(array):
 	return array
 
 
+
+##################################################################################
+#                                Merge sort 
+##################################################################################
+def mergeSort(array):
+	if len(array) <= 1:
+		return array
+	else:
+		medio = len(array) // 2
+		m1 = mergeSort(array[:medio])
+		m2 = mergeSort(array[medio:])
+		return combine(m1, m2)
+	
 def combine(l1, l2):
 	res = []
 	i = 0
@@ -60,27 +88,10 @@ def combine(l1, l2):
 		res += l2[j:]
 	return res
 
-def mergeSort(array):
-	if len(array) <= 1:
-		return array
-	else:
-		medio = len(array) // 2
-		m1 = mergeSort(array[:medio])
-		m2 = mergeSort(array[medio:])
-		return combine(m1, m2)
 
-
-def partition(array, begin, end):
-	pivot = randint(begin, end)
-	array[pivot], array[end] = array[end], array[pivot]
-	i = begin -1
-	for j in range(begin, end):
-		if array[j] <= array[end]:
-			i += 1
-			array[i], array[j] = array[j], array[i]
-	array[i+1], array[end] = array[end], array[i+1]
-	return i + 1
-
+##################################################################################
+#                                Quick sort 
+##################################################################################
 def quickSort(array, begin=0, end=None):
 	if end is None:
 		end = len(array) - 1
@@ -93,3 +104,14 @@ def quickSort(array, begin=0, end=None):
 	# return _quickSort(array, begin, end)
 	_quickSort(array, begin, end)
 	return array
+
+def partition(array, begin, end):
+	pivot = randint(begin, end)
+	array[pivot], array[end] = array[end], array[pivot]
+	i = begin - 1
+	for j in range(begin, end):
+		if array[j] <= array[end]:
+			i += 1
+			array[i], array[j] = array[j], array[i]
+	array[i+1], array[end] = array[end], array[i+1]
+	return i + 1
