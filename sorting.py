@@ -1,14 +1,5 @@
 from random import randint
 
-#
-# En este módulo se encuentran las implementaciones de los algoritmos de sorting
-# utilizados.
-#
-
-
-##################################################################################
-#                                Insertion sort 
-##################################################################################
 def insertionSort(array):
 	i = 1
 	while i < len(array):
@@ -19,10 +10,6 @@ def insertionSort(array):
 		i += 1
 	return array
 
-
-##################################################################################
-#                                Selection sort 
-##################################################################################
 def selectionSort(array):
 	i = 0
 	while i < len(array)-1:
@@ -41,10 +28,6 @@ def minPos(i, j, array):
 		count += 1
 	return res
 
-
-##################################################################################
-#                                Bubble sort 
-##################################################################################
 def bubbleSort(array):
 	intercambiado = True
 	n = len(array)-1
@@ -57,11 +40,6 @@ def bubbleSort(array):
 		n -= 1
 	return array
 
-
-
-##################################################################################
-#                                Merge sort 
-##################################################################################
 def mergeSort(array):
 	if len(array) <= 1:
 		return array
@@ -70,7 +48,7 @@ def mergeSort(array):
 		m1 = mergeSort(array[:medio])
 		m2 = mergeSort(array[medio:])
 		return combine(m1, m2)
-	
+
 def combine(l1, l2):
 	res = []
 	i = 0
@@ -88,10 +66,6 @@ def combine(l1, l2):
 		res += l2[j:]
 	return res
 
-
-##################################################################################
-#                                Quick sort 
-##################################################################################
 def quickSort(array, begin=0, end=None):
 	if end is None:
 		end = len(array) - 1
